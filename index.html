@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIENT_NAME | The Diamond Jubilee</title>
+    <style>
+        * { box-sizing: border-box; }
+        body, html {
+            margin: 0; padding: 0; height: 100%; width: 100%;
+            font-family: 'Garamond', 'Georgia', serif;
+            background: #000; overflow: hidden; color: #ffffff;
+        }
+
+        /* 1. Background Setup */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6)), 
+                        url('./landing_page.jpg') no-repeat center center;
+            background-size: cover;
+            height: 100vh; width: 100%;
+            display: flex; flex-direction: column;
+            justify-content: flex-end; padding: 60px 10%;
+        }
+
+        /* Mobile Image Swap */
+        @media (max-width: 768px) {
+            .hero-section {
+                background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.8)), 
+                            url('./mobile_landing.jpg') no-repeat center center;
+                background-size: cover;
+                padding: 40px 5%;
+                align-items: center;
+                text-align: center;
+            }
+            .hero-text { font-size: 3rem !important; }
+        }
+
+        /* 2. THE LOADING BAR SYSTEM */
+        .loader-container {
+            position: fixed;
+            bottom: 0; left: 0;
+            width: 100%; height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 2000;
+            animation: fadeOut 0.5s forwards;
+            animation-delay: 3.2s; /* Fades out slightly after finishing */
+        }
+
+        .loader-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #58ccff, #ffd700);
+            box-shadow: 0 0 15px #ffd700;
+            animation: fillProgress 3s linear forwards;
+        }
+
+        @keyframes fillProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        /* 3. THE REVEAL CONTENT */
+        .reveal-content {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUpReveal 1.2s ease-out forwards;
+            animation-delay: 3.5s; /* Appears after loading bar finishes */
+        }
+
+        @keyframes slideUpReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Typography & Buttons */
+        .hero-content { max-width: 900px; margin-bottom: 20px; }
+        .hero-text { font-size: clamp(3rem, 10vw, 6rem); font-weight: 700; line-height: 1; margin: 0; text-shadow: 0 4px 20px rgba(0,0,0,0.9); }
+        .sub-headline { font-family: 'Arial', sans-serif; font-size: 1.1rem; letter-spacing: 3px; text-transform: uppercase; color: #58ccff; margin-top: 15px; display: block; }
+        .button-group { display: flex; flex-direction: column; gap: 20px; align-self: flex-end; width: 100%; max-width: 480px; }
+        .action-btn { display: flex; justify-content: space-between; align-items: center; padding: 22px 35px; border: 2px solid #58ccff; border-radius: 50px; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #ffffff; text-decoration: none; font-family: 'Arial', sans-serif; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease; cursor: pointer; }
+        .action-btn:hover { background: rgba(88, 204, 255, 0.2); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(88, 204, 255, 0.3); }
+
+        /* Modal Viewer Styles */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; backdrop-filter: blur(15px); }
+        .modal-content { position: relative; width: 95%; height: 85%; margin: 5% auto; border: 1px solid #58ccff; border-radius: 15px; overflow: hidden; }
+        .close-modal { position: absolute; top: 10px; right: 20px; color: #58ccff; font-size: 3rem; cursor: pointer; z-index: 3001; font-family: Arial; }
+
+        /* FAQ Toggle */
+        .faq-section { width: 100%; max-width: 480px; align-self: flex-end; margin-top: 20px; }
+        .faq-toggle { background: none; border: none; color: #58ccff; cursor: pointer; font-family: 'Arial', sans-serif; font-size: 0.9rem; text-align: right; width: 100%; padding: 10px 0; }
+        .faq-content { display: none; background: rgba(0, 0, 0, 0.8); padding: 20px; border-radius: 15px; border: 1px solid #333; margin-top: 5px; font-family: 'Arial', sans-serif; font-size: 0.9rem; text-align: left; }
+
+        @media (max-width: 1024px) { .button-group, .faq-section { align-self: center; } .faq-toggle { text-align: center; } }
+    </style>
+</head>
+<body>
+
+    <div class="loader-container">
+        <div class="loader-fill"></div>
+    </div>
+
+    <section class="hero-section">
+        <div class="reveal-content">
+            
+            <div class="hero-content">
+                <h1 class="hero-text">Check this out...</h1>
+                <span class="sub-headline">The Lord Remys Diamond Jubilee Commemoration</span>
+            </div>
+
+            <div class="button-group">
+                <button class="action-btn" onclick="openViewer()">
+                    <span>View My Commemorative Coin</span>
+                    <span class="arrow-icon">→</span>
+                </button>
+
+                <a href="https://quetouch.gumroad.com/l/zpvugs" target="_blank" class="action-btn">
+                    <span>Download My Beautiful Coin</span>
+                    <span class="arrow-icon">→</span>
+                </a>
+            </div>
+
+            <div class="faq-section">
+                <button class="faq-toggle" onclick="toggleFAQ()">Need help viewing the 3D Coin? ▼</button>
+                <div id="faq-content" class="faq-content">
+                    <p><strong>How to view:</strong> Click "View" to open the interactive gallery. Use one finger (or mouse) to rotate the coin.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="coinModal" class="modal-overlay">
+        <span class="close-modal" onclick="closeViewer()">&times;</span>
+        <div class="modal-content">
+            <iframe id="sketchfabFrame" style="width: 100%; height: 100%; border: 0;" allow="autoplay; fullscreen; xr-spatial-tracking" src=""></iframe>
+        </div>
+    </div>
+
+    <script>
+        // EDIT THIS: Sketchfab ID
+        const modelID = "86837bb18d144be6b54a28300daba748";
+
+        function openViewer() {
+            const frame = document.getElementById('sketchfabFrame');
+            frame.src = `https://sketchfab.com/models/${modelID}/embed?autostart=1&autospin=0.2&ui_infos=0&ui_watermark=0&ui_help=0&ui_settings=0&ui_inspector=0`;
+            document.getElementById('coinModal').style.display = "block";
+        }
+
+        function closeViewer() {
+            document.getElementById('coinModal').style.display = "none";
+            document.getElementById('sketchfabFrame').src = "";
+        }
+
+        function toggleFAQ() {
+            var content = document.getElementById("faq-content");
+            content.style.display = (content.style.display === "block") ? "none" : "block";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('coinModal')) { closeViewer(); }
+        }
+    </script>
+
+</body>
+</html>
