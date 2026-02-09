@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lord Remys of London | The Diamond Jubilee</title>
+    <style>
+        /* 1. Reset and Global Styles */
+        * { box-sizing: border-box; }
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: 'Garamond', 'Georgia', serif;
+            background: #000;
+            overflow-x: hidden;
+            color: #ffffff;
+        }
+
+        /* 2. Background Image Setup */
+        /* Ensure your image is named 'Landing page.JPG' exactly */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6)), 
+                        url('Landing page.JPG') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Aligns content to bottom right */
+            padding: 60px 10%;
+        }
+
+        /* 3. Typography */
+        .hero-content {
+            max-width: 900px;
+            animation: fadeIn 1.5s ease-out;
+            margin-bottom: 20px;
+        }
+
+        .hero-text {
+            font-size: clamp(3rem, 10vw, 6rem); /* Responsive text size */
+            font-weight: 700;
+            line-height: 1;
+            margin: 0;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+        }
+
+        .sub-headline {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #58ccff;
+            margin-top: 15px;
+            display: block;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        /* 4. Buttons Container */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-self: flex-end; /* Pushes buttons to the right side */
+            width: 100%;
+            max-width: 480px;
+        }
+
+        /* 5. Glassmorphism Buttons */
+        .action-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 35px;
+            border: 2px solid #58ccff;
+            border-radius: 50px;
+            background: rgba(0, 0, 0, 0.4); /* Dark semi-transparent */
+            backdrop-filter: blur(10px);    /* Glass blur effect */
+            -webkit-backdrop-filter: blur(10px);
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: rgba(88, 204, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(88, 204, 255, 0.3);
+        }
+
+        .arrow-icon {
+            font-size: 1.5rem;
+            color: #58ccff;
+        }
+
+        /* 6. FAQ Section (Hidden Toggle) */
+        .faq-section {
+            width: 100%;
+            max-width: 480px;
+            align-self: flex-end;
+            margin-top: 20px;
+        }
+
+        .faq-toggle {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.9rem;
+            text-align: right;
+            width: 100%;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+
+        .faq-toggle:hover { color: #58ccff; }
+
+        .faq-content {
+            display: none; /* Hidden by default */
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            margin-top: 5px;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .faq-item { margin-bottom: 15px; }
+        .faq-item strong { color: #58ccff; display: block; margin-bottom: 5px; }
+        .faq-item p { margin: 0; color: #ccc; }
+
+        /* 7. Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .hero-section { align-items: center; text-align: center; padding-bottom: 100px; }
+            .button-group, .faq-section { align-self: center; }
+            .faq-toggle { text-align: center; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-text { font-size: 3rem; }
+            .sub-headline { font-size: 0.8rem; }
+            .action-btn { padding: 18px 25px; font-size: 1rem; }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero-section">
+        
+        <div class="hero-content">
+            <h1 class="hero-text">Check this out...</h1>
+            <span class="sub-headline">The Lord Remys Diamond Jubilee Commemoration</span>
+        </div>
+
+        <div class="button-group">
+            
+            <a href="https://skfb.ly/pFY8n" target="_blank" class="action-btn">
+                <span>View My Commemorative Coin</span>
+                <span class="arrow-icon">→</span>
+            </a>
+
+            <a href="https://quetouch.gumroad.com/l/zpvugs" target="_blank" class="action-btn">
+                <span>Download My Beautiful Coin</span>
+                <span class="arrow-icon">→</span>
+            </a>
+
+        </div>
+
+        <div class="faq-section">
+            <button class="faq-toggle" onclick="toggleFAQ()">Need help viewing the 3D Coin? ▼</button>
+            <div id="faq-content" class="faq-content">
+                <div class="faq-item">
+                    <strong>How do I view the coin?</strong>
+                    <p>Click "View" to open the interactive 3D window. You can rotate, zoom, and explore every detail.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Can I see it in my room?</strong>
+                    <p>Yes! On mobile, look for the "AR" icon in the viewer to place the coin on your table.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>How do I download?</strong>
+                    <p>Click "Download" to visit the donation page. You will receive the .GLB file to keep forever.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        function toggleFAQ() {
+            var content = document.getElementById("faq-content");
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
